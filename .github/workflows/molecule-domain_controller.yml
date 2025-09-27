@@ -32,6 +32,7 @@ jobs:
     runs-on:
       - self-hosted
       - linux
+      - ansible
       - x64
     strategy:
       fail-fast: false
@@ -62,6 +63,7 @@ jobs:
     runs-on:
       - self-hosted
       - linux
+      - ansible
       - x64
     strategy:
       fail-fast: false

@@ -41,7 +41,7 @@ name: Generate Role Docs
       - roles/testing_win_member/meta/main.yml
 defaults:
   run:
-    working-directory: 'trippsc2.adcs'
+    working-directory: 'trippsc2.ad'
 jobs:
   docs_authorize_dhcp_server:
     name: Generate authorize_dhcp_server role documentation

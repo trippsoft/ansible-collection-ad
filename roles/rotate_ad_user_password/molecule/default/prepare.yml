@@ -4,7 +4,6 @@
     - vault
   roles:
     - role: trippsc2.hashi_vault.testing
-  
   tasks:
     - name: Create HashiCorp Vault mount point
       delegate_to: localhost

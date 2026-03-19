@@ -27,7 +27,7 @@
       when:
         - _create_domain.reboot_required
       ansible.windows.win_reboot:
-    
+
     - name: Disable default GPOs
       ansible.windows.win_powershell:
         script: |

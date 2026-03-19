@@ -30,10 +30,14 @@
 - name: Set temporary variables
   ansible.builtin.set_fact:
     _domjoin_space_character: "{{ domjoin_override_space | default('\\ ') }}"
-    _domjoin_existing_allow_users: "{{ _domjoin_sshd_config.stdout | regex_findall('(?<=^allowusers ).*$', multiline=True) }}"
-    _domjoin_existing_allow_groups: "{{ _domjoin_sshd_config.stdout | regex_findall('(?<=^allowgroups ).*$', multiline=True) }}"
-    _domjoin_existing_deny_users: "{{ _domjoin_sshd_config.stdout | regex_findall('(?<=^denyusers ).*$', multiline=True) }}"
-    _domjoin_existing_deny_groups: "{{ _domjoin_sshd_config.stdout | regex_findall('(?<=^denygroups ).*$', multiline=True) }}"
+    _domjoin_existing_allow_users: >-
+      {{ _domjoin_sshd_config.stdout | regex_findall('(?<=^allowusers ).*$', multiline=True) }}
+    _domjoin_existing_allow_groups: >-
+      {{ _domjoin_sshd_config.stdout | regex_findall('(?<=^allowgroups ).*$', multiline=True) }}
+    _domjoin_existing_deny_users: >-
+      {{ _domjoin_sshd_config.stdout | regex_findall('(?<=^denyusers ).*$', multiline=True) }}
+    _domjoin_existing_deny_groups: >-
+      {{ _domjoin_sshd_config.stdout | regex_findall('(?<=^denygroups ).*$', multiline=True) }}
 
 - name: Configure SSH AllowUsers
   when:

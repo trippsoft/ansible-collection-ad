@@ -42,7 +42,7 @@
           - _powershell.result
         fail_msg: The domain controller is not the Domain Naming Master.
         success_msg: The domain controller is the Domain Naming Master.
-    
+
     - name: Check Infrastructure Master
       ansible.windows.win_powershell:
         script: |
@@ -51,7 +51,7 @@
 
           $Ansible.Result = ('InfrastructureMaster' -in $dc.OperationMasterRoles)
       register: _powershell
-    
+
     - name: Verify Infrastructure Master
       ansible.builtin.assert:
         that:

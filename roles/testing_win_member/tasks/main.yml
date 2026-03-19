@@ -33,7 +33,7 @@
             $Ansible.Changed = $true
             $profile | Set-NetConnectionProfile -NetworkCategory Private
           }
-    
+
     - name: Join domain
       microsoft.ad.membership:
         dns_domain_name: "{{ domain_name }}"
@@ -57,7 +57,7 @@
             username: "{{ domain_join_username }}"
             state: present
           register: _create_profile
-      
+
         - name: Create .ssh directory in domain user profile
           ansible.windows.win_file:
             path: "{{ _create_profile.path }}\\.ssh"

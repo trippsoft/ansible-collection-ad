@@ -36,4 +36,4 @@
     that:
       - item.ip_address is ansible.utils.ipv4
     fail_msg: "{{ item.ip_address }} is not a valid IPv4 address."
-    success_msg: "{{ item.ip_address }} is a valid IPv4 address." 
+    success_msg: "{{ item.ip_address }} is a valid IPv4 address."

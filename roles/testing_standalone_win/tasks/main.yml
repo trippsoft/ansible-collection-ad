@@ -10,7 +10,7 @@
         $Ansible.Changed = $true
         $profile | Set-NetConnectionProfile -NetworkCategory Private
       }
-  
+
 - name: Set DNS to DC address
   ansible.windows.win_dns_client:
     adapter_names: '*'

@@ -1,7 +1,7 @@
 ---
 - name: Add sudoers rule for users
-  become: true
   loop: "{{ domjoin_sudoers_users }}"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     line: >-
@@ -10,8 +10,8 @@
     validate: 'visudo -cf %s'
 
 - name: Add sudoers rule for groups
-  become: true
   loop: "{{ domjoin_sudoers_groups }}"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     line: >-
@@ -20,8 +20,8 @@
     validate: 'visudo -cf %s'
 
 - name: Get sshd configuration
-  become: true
   check_mode: false
+  become: true
   ansible.builtin.command: sshd -T
   changed_when: false
   failed_when: false
@@ -169,8 +169,8 @@
             _domjoin_missing_deny_groups: "{{ _domjoin_add_deny_groups | difference(_domjoin_existing_deny_groups) }}"
 
         - name: Add deny groups
-          become: true
           loop: "{{ _domjoin_missing_deny_groups }}"
+          become: true
           ansible.builtin.replace:
             path: /etc/ssh/sshd_config
             regexp: '(DenyGroups .*)'

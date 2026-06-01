@@ -28,7 +28,7 @@ defaults:
     working-directory: 'trippsc2.ad'
 jobs:
   molecule:
-    name: Run Molecule tests - testing_win_member
+    name: Run Molecule tests
     runs-on:
       - self-hosted
       - linux

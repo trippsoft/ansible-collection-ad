@@ -34,6 +34,19 @@ jobs:
       - linux
       - ansible
       - x64
+    strategy:
+      fail-fast: false
+      matrix:
+        box:
+          - debian13_base
+          - fedora44_base
+          - fedora43_base
+          - rocky10_base
+          - rocky9_cis
+          - rocky8_cis
+          - ubuntu2604_base
+          - ubuntu2404_base
+          - ubuntu2204_base
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -52,16 +65,3 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           PY_COLORS: '1'
           MOLECULE_BOX: ${{ matrix.box }}
-    strategy:
-      fail-fast: false
-      matrix:
-        box:
-          - debian13_base
-          - fedora44_base
-          - fedora43_base
-          - rocky10_base
-          - rocky9_cis
-          - rocky8_cis
-          - ubuntu2604_base
-          - ubuntu2404_base
-          - ubuntu2204_base

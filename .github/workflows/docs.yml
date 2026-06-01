@@ -72,6 +72,7 @@ jobs:
           deactivate
   docs_domain_controller:
     name: Generate domain_controller role documentation
+    needs: docs_authorize_dhcp_server
     permissions:
       contents: write
     runs-on:
@@ -97,9 +98,9 @@ jobs:
           git commit -m "Update domain_controller role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_authorize_dhcp_server
   docs_linux_member:
     name: Generate linux_member role documentation
+    needs: docs_domain_controller
     permissions:
       contents: write
     runs-on:
@@ -125,9 +126,9 @@ jobs:
           git commit -m "Update linux_member role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_domain_controller
   docs_rotate_ad_user_password:
     name: Generate rotate_ad_user_password role documentation
+    needs: docs_linux_member
     permissions:
       contents: write
     runs-on:
@@ -153,9 +154,9 @@ jobs:
           git commit -m "Update rotate_ad_user_password role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_linux_member
   docs_testing_domain_controller:
     name: Generate testing_domain_controller role documentation
+    needs: docs_rotate_ad_user_password
     permissions:
       contents: write
     runs-on:
@@ -181,9 +182,9 @@ jobs:
           git commit -m "Update testing_domain_controller role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_rotate_ad_user_password
   docs_testing_linux_member:
     name: Generate testing_linux_member role documentation
+    needs: docs_testing_domain_controller
     permissions:
       contents: write
     runs-on:
@@ -209,9 +210,9 @@ jobs:
           git commit -m "Update testing_linux_member role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_testing_domain_controller
   docs_testing_standalone_win:
     name: Generate testing_standalone_win role documentation
+    needs: docs_testing_linux_member
     permissions:
       contents: write
     runs-on:
@@ -237,9 +238,9 @@ jobs:
           git commit -m "Update testing_standalone_win role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_testing_linux_member
   docs_testing_win_member:
     name: Generate testing_win_member role documentation
+    needs: docs_testing_standalone_win
     permissions:
       contents: write
     runs-on:
@@ -265,4 +266,3 @@ jobs:
           git commit -m "Update testing_win_member role documentation." || /bin/true
           git push origin main
           deactivate
-    needs: docs_testing_standalone_win

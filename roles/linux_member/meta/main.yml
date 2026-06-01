@@ -5,7 +5,7 @@ galaxy_info:
   role_name: linux_member
   description: |
     This role joins a Linux system to an Active Directory domain.
-    
+
     Before running this role, the system should use be able to resolve the AD domain name and domain controllers via DNS.
   license: MIT
 
@@ -14,13 +14,18 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - bookworm
+        - trixie
     - name: EL
       versions:
+        - '10'
         - '9'
         - '8'
+    - name: Fedora
+      versions:
+        - all
     - name: Ubuntu
       versions:
+        - resolute
         - noble
         - jammy
 

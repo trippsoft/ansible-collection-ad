@@ -13,3 +13,7 @@ _domjoin_packages:
   - sssd
 
 _domjoin_ssh_service: sshd.service
+
+_domjoin_sssd_conf_owner: root
+_domjoin_sssd_conf_group: root
+_domjoin_sssd_conf_mode: '0600'

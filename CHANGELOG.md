@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.0] - 2026-06-01
+
+### Role - linux_member
+
+- Added testing for Debian 13.
+- Added testing for Fedora 44 and 43.
+- Added testing for Ubuntu 26.04.
+
+### Role - testing_linux_member
+
+- Added testing for Debian 13.
+- Added testing for Fedora 44 and 43.
+- Added testing for Ubuntu 26.04.
+
 ## [2.4.2] - 2025-06-10
 
 ### Collection

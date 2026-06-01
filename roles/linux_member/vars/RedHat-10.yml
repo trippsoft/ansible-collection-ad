@@ -1,22 +1,19 @@
 ---
 _domjoin_is_os_supported: true
-_domjoin_is_tested: false
+_domjoin_is_tested: true
 
 _domjoin_packages:
   - adcli
-  - libnss-sss
-  - libpam-sss
+  - krb5-workstation
   - oddjob
   - oddjob-mkhomedir
-  - packagekit
   - python3-pexpect
   - realmd
-  - samba-common-bin
+  - samba-common-tools
   - sssd
-  - sssd-tools
 
 _domjoin_ssh_service: sshd.service
 
 _domjoin_sssd_conf_owner: root
-_domjoin_sssd_conf_group: root
-_domjoin_sssd_conf_mode: '0600'
+_domjoin_sssd_conf_group: sssd
+_domjoin_sssd_conf_mode: '0640'

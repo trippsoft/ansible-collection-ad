@@ -6,7 +6,7 @@
     path: /etc/sudoers
     line: >-
       {{ item | lower | regex_replace(' ', '\\ ') }}{% if domjoin_use_fully_qualified_names %}@{{ domjoin_domain_name }}{% endif %} ALL=(ALL) ALL
-    insertbefore: '^#includedir /etc/sudoers.d'
+    insertbefore: '^(?:#|@)includedir /etc/sudoers\.d'
     validate: 'visudo -cf %s'
 
 - name: Add sudoers rule for groups
@@ -16,7 +16,7 @@
     path: /etc/sudoers
     line: >-
       %{{ item | lower | regex_replace(' ', '\\ ') }}{% if domjoin_use_fully_qualified_names %}@{{ domjoin_domain_name }}{% endif %} ALL=(ALL) ALL
-    insertbefore: '^#includedir /etc/sudoers.d'
+    insertbefore: '^(?:#|@)includedir /etc/sudoers\.d'
     validate: 'visudo -cf %s'
 
 - name: Get sshd configuration

@@ -47,70 +47,222 @@ jobs:
     name: Generate authorize_dhcp_server role documentation
     permissions:
       contents: write
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'authorize_dhcp_server'
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate authorize_dhcp_server role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/authorize_dhcp_server
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update authorize_dhcp_server role documentation." || /bin/true
+          git push origin main
+          deactivate
   docs_domain_controller:
     name: Generate domain_controller role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate domain_controller role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/domain_controller
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update domain_controller role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_authorize_dhcp_server
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'domain_controller'
   docs_linux_member:
     name: Generate linux_member role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate linux_member role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/linux_member
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update linux_member role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_domain_controller
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'linux_member'
   docs_rotate_ad_user_password:
     name: Generate rotate_ad_user_password role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate rotate_ad_user_password role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/rotate_ad_user_password
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update rotate_ad_user_password role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_linux_member
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'rotate_ad_user_password'
   docs_testing_domain_controller:
     name: Generate testing_domain_controller role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate testing_domain_controller role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/testing_domain_controller
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update testing_domain_controller role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_rotate_ad_user_password
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'testing_domain_controller'
   docs_testing_linux_member:
     name: Generate testing_linux_member role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate testing_linux_member role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/testing_linux_member
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update testing_linux_member role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_testing_domain_controller
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'testing_linux_member'
   docs_testing_standalone_win:
     name: Generate testing_standalone_win role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate testing_standalone_win role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/testing_standalone_win
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update testing_standalone_win role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_testing_linux_member
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'testing_standalone_win'
   docs_testing_win_member:
     name: Generate testing_win_member role documentation
     permissions:
       contents: write
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+          ref: main
+      - name: Generate testing_win_member role documentation
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/testing_win_member
+          aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md || /bin/true
+          git commit -m "Update testing_win_member role documentation." || /bin/true
+          git push origin main
+          deactivate
     needs: docs_testing_standalone_win
-    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'testing_win_member'

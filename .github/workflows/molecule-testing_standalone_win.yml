@@ -28,12 +28,30 @@ defaults:
     working-directory: 'trippsc2.ad'
 jobs:
   molecule:
-    name: Run Molecule test
-    uses: trippsoft/github-actions/.github/workflows/molecule.yml@main
-    with:
-      working_directory: 'trippsc2.ad'
-      role_name: 'testing_standalone_win'
-      box: ${{ matrix.box }}
+    name: Run Molecule tests - testing_standalone_win
+    runs-on:
+      - self-hosted
+      - linux
+      - ansible
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          path: trippsc2.ad
+      - name: Run Molecule tests
+        working-directory: 'trippsc2.ad'
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          rm -rf ~/.ansible/collections/ansible_collections/*
+          cd ./roles/testing_standalone_win
+          molecule test
+          rm -rf ~/.ansible/collections/ansible_collections/*
+          deactivate
+        env:
+          ANSIBLE_FORCE_COLOR: '1'
+          PY_COLORS: '1'
+          MOLECULE_BOX: ${{ matrix.box }}
     strategy:
       fail-fast: false
       matrix:
@@ -41,6 +59,6 @@ jobs:
           - w2025_cis
           - w2022_cis
           - w2019_cis
+          - w11_25h2_base
           - w11_24h2_base
           - w11_23h2_base
-          - w10_22h2_base

@@ -1,7 +1,6 @@
 ---
 name: Molecule - testing_standalone_win role
 'on':
-  workflow_call: {}
   workflow_dispatch: {}
   pull_request:
     branches:
@@ -38,12 +37,15 @@ jobs:
       fail-fast: false
       matrix:
         box:
-          - w2025_cis
-          - w2022_cis
           - w2019_cis
-          - w11_25h2_base
+          - w2022_cis
+          - w2025_cis
           - w11_24h2_base
-          - w11_23h2_base
+          - w11_25h2_base
+          - w11_26h2_base
+        ansible:
+          - '2.16'
+          - '2.21'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -52,7 +54,7 @@ jobs:
       - name: Run Molecule tests
         working-directory: 'trippsc2.ad'
         run: |
-          source ~/venv/ansible-2.16/bin/activate
+          source ~/venv/ansible-${{ matrix.ansible }}/bin/activate
           rm -rf ~/.ansible/collections/ansible_collections/*
           cd ./roles/testing_standalone_win
           molecule test
@@ -62,3 +64,4 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           PY_COLORS: '1'
           MOLECULE_BOX: ${{ matrix.box }}
+          MOLECULE_ANSIBLE_VERSION: ${{ matrix.ansible }}

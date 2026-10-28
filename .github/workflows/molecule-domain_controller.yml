@@ -1,7 +1,6 @@
 ---
 name: Molecule - domain_controller role
 'on':
-  workflow_call: {}
   workflow_dispatch: {}
   pull_request:
     branches:
@@ -38,9 +37,12 @@ jobs:
       fail-fast: false
       matrix:
         box:
-          - w2025_cis
-          - w2022_cis
           - w2019_cis
+          - w2022_cis
+          - w2025_cis
+        ansible:
+          - '2.16'
+          - '2.21'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -48,7 +50,7 @@ jobs:
           path: 'trippsc2.ad'
       - name: Run Molecule tests
         run: |
-          source ~/venv/ansible-2.16/bin/activate
+          source ~/venv/ansible-${{ matrix.ansible }}/bin/activate
           rm -rf ~/.ansible/collections/ansible_collections/*
           cd ./roles/domain_controller
           molecule test
@@ -58,6 +60,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           PY_COLORS: '1'
           MOLECULE_BOX: ${{ matrix.box }}
+          MOLECULE_ANSIBLE_VERSION: ${{ matrix.ansible }}
   molecule_new:
     name: Run Molecule tests - new domain
     runs-on:
@@ -72,6 +75,9 @@ jobs:
           - w2025_cis
           - w2022_cis
           - w2019_cis
+        ansible:
+          - '2.16'
+          - '2.21'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -79,7 +85,7 @@ jobs:
           path: 'trippsc2.ad'
       - name: Run Molecule tests
         run: |
-          source ~/venv/ansible-2.16/bin/activate
+          source ~/venv/ansible-${{ matrix.ansible }}/bin/activate
           rm -rf ~/.ansible/collections/ansible_collections/*
           cd ./roles/domain_controller
           molecule test -s new
@@ -89,3 +95,4 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           PY_COLORS: '1'
           MOLECULE_BOX: ${{ matrix.box }}
+          MOLECULE_ANSIBLE_VERSION: ${{ matrix.ansible }}

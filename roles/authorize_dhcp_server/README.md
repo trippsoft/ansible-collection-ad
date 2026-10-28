@@ -1,7 +1,7 @@
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 # Ansible Role: trippsc2.ad.authorize_dhcp_server
-Version: 2.5.0
+Version: 2.5.1
 
 This role authorizes a domain member as a DHCP Server in Active Directory.
 
@@ -27,7 +27,7 @@ This role authorizes a domain member as a DHCP Server in Active Directory.
 ## Role Arguments
 |Option|Description|Type|Required|Choices|Default|
 |---|---|---|---|---|---|
-| dhcp_authorize_servers | <p>The list of DHCP servers to authorize in Active Directory.</p> | list of dicts of 'dhcp_authorize_servers' options | yes |  |  |
+| dhcp_authorize_servers | <p>The list of DHCP servers to authorize in Active Directory.</p> | list of dicts of `dhcp_authorize_servers` [options](#options-for-main--dhcp_authorize_servers) | yes |  |  |
 
 ### Options for dhcp_authorize_servers
 |Option|Description|Type|Required|Choices|Default|

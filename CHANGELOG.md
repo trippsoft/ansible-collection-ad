@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.1] - 2026-10-27
+
+### Role - authorize_dhcp_server
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - domain_controller
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - linux_member
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - rotate_ad_user_password
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - testing_domain_controller
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - testing_linux_member
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - testing_standalone_win
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
+### Role - testing_win_member
+
+- Changed fact gathering to use `ansible_facts` instead of direct variables.
+
 ## [2.5.0] - 2026-06-01
 
 ### Role - linux_member

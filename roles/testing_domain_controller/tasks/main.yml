@@ -1,7 +1,7 @@
 ---
 - name: If the domain controller is not already installed, install it
   when:
-    - not (ansible_windows_domain_role | regex_search('(domain controller)'))
+    - not (ansible_facts.windows_domain_role | regex_search('(domain controller)'))
   block:
     - name: Set DNS server on all interfaces to public DNS temporarily
       ansible.windows.win_dns_client:
@@ -75,7 +75,7 @@
         name: "{{ dc_reverse_lookup_zone_data }}"
         zone: "{{ dc_reverse_lookup_zone_name }}"
         type: PTR
-        value: "{{ ansible_hostname }}.{{ domain_name }}"
+        value: "{{ ansible_facts.hostname }}.{{ domain_name }}"
         state: present
 
 - name: Ensure domain admin user is configured

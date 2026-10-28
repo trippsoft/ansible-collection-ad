@@ -6,8 +6,8 @@
     - name: Verify that the domain controller is promoted
       ansible.builtin.assert:
         that:
-          - ("domain controller" in ansible_windows_domain_role)
-          - ansible_windows_domain == 'test.loc'
+          - ("domain controller" in ansible_facts.windows_domain_role)
+          - ansible_facts.windows_domain == 'test.loc'
         fail_msg: The domain controller is not promoted.
         success_msg: The domain controller is promoted.
 

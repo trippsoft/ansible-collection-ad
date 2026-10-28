@@ -1,7 +1,7 @@
 ---
 - name: Gather OS Facts
   when:
-    - ansible_os_family is not defined
+    - ansible_facts.os_family is not defined
   ansible.builtin.setup:
     gather_subset:
       - '!all'
@@ -12,10 +12,10 @@
 - name: Validate Windows Server
   ansible.builtin.assert:
     that:
-      - ansible_os_family == 'Windows'
-      - ('Windows Server' in ansible_distribution)
-    fail_msg: "This role can only be run on a Windows Server system.  {{ ansible_distribution }} is not supported."
-    success_msg: "This role is running on {{ ansible_distribution }}."
+      - ansible_facts.os_family == 'Windows'
+      - ('Windows Server' in ansible_facts.distribution)
+    fail_msg: "This role can only be run on a Windows Server system.  {{ ansible_facts.distribution }} is not supported."
+    success_msg: "This role is running on {{ ansible_facts.distribution }}."
 
 - name: Get user data from Active Directory
   microsoft.ad.object_info:
@@ -101,7 +101,7 @@
         - name: Get difference in time
           ansible.builtin.set_fact:
             _rotate_vault_secret_age: >-
-              {{ (ansible_date_time.iso8601[:19] | to_datetime('%Y-%m-%dT%H:%M:%S') -
+              {{ (ansible_facts.date_time.iso8601[:19] | to_datetime('%Y-%m-%dT%H:%M:%S') -
                   _rotate_vault_secret.data.metadata.created_time[:19] | to_datetime('%Y-%m-%dT%H:%M:%S')).seconds }}
 
         - name: Set variable to indicate password must be rotated
@@ -122,7 +122,7 @@
     - name: Get difference in time
       ansible.builtin.set_fact:
         _rotate_password_age: >-
-          {{ (ansible_date_time.iso8601[:19] | to_datetime('%Y-%m-%dT%H:%M:%S') -
+          {{ (ansible_facts.date_time.iso8601[:19] | to_datetime('%Y-%m-%dT%H:%M:%S') -
               (_rotate_user_data.pwdLastSet | microsoft.ad.as_datetime)[:19] | to_datetime('%Y-%m-%dT%H:%M:%S')).seconds }}
 
     - name: Set variable to indicate password must be rotated

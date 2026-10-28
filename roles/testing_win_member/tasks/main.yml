@@ -1,7 +1,7 @@
 ---
 - name: Gathering Facts
   when:
-    - ansible_windows_domain_role is not defined
+    - ansible_facts.windows_domain_role is not defined
   vars:
     ansible_user: "{{ non_domain_user }}"
   ansible.builtin.setup:
@@ -12,7 +12,7 @@
 
 - name: If the domain is not joined, join it
   when:
-    - ('Stand-alone' in ansible_windows_domain_role)
+    - ('Stand-alone' in ansible_facts.windows_domain_role)
   vars:
     ansible_user: "{{ non_domain_user }}"
   block:
